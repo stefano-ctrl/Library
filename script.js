@@ -9,7 +9,7 @@ const bookInfo = document.querySelector('.info-sec');
 function Book(title, author, pages, read) {
     this.title = title; 
     this.author = author;
-    this.pages = pages, 
+    this.pages = `${pages} pages`, 
     this.read = read; 
 
 }
@@ -26,12 +26,14 @@ let bookThree = new Book('White Nights', 'Fyodor Dostoevsky', 276, 'read long ti
 
 
 function addBookToLibrary(book) {
-    myLibrary.push(book);
+       return myLibrary.push(book);
+ 
+};
+    // need to understand how to set up function through books and how for each shouuld be implemented 
+function loopBooks(arr) {
+    arr.forEach((book) => {
 
-    
-    return myLibrary.forEach( book => {
-       
-       let bookCard = document.createElement('div');
+    let bookCard = document.createElement('div');
        let bookTitle = document.createElement('h3');
        let bookAuthor = document.createElement('h4');
        let bookPages = document.createElement('p'); 
@@ -46,17 +48,20 @@ function addBookToLibrary(book) {
        bookTitle.textContent = book.title;
        bookAuthor.textContent = book.author; 
        bookPages.textContent = book.pages;
-       bookInfo.textContent = book.info();
+       bookInfo.textContent = book.info(); 
 
-
-   
-    }),
-  myLibrary.pop();
-};
+             
+    })
+}
 
 addBookToLibrary(bookOne);
 addBookToLibrary(bookTwo);
 addBookToLibrary(bookThree); 
 
+
+
+console.log(myLibrary);
+
+loopBooks(myLibrary); 
 
 
