@@ -1,67 +1,108 @@
 const myLibrary = [];
-const mainContainer = document.querySelector('.container');
 
-const bookAuthor = document.querySelector('.author-sec'); 
-const bookPages = document.querySelector('.pages-sec');
-const bookInfo = document.querySelector('.info-sec');
+
+
+
 
 
 function Book(title, author, pages, read) {
-    this.title = title; 
+    this.title = title;
     this.author = author;
-    this.pages = `${pages} pages`, 
-    this.read = read; 
+    this.pages = pages;
+    this.read = read;
 
 }
 
-Book.prototype.info = function() {
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
+Book.prototype.toggleRead = function () {
+    this.read = !this.read;
 }
 
-let bookOne = new Book('Walden', 'Henry David Thoureau', 198, 'loved the nature and freedom of the character');
-let bookTwo = new Book('Family Happiness', 'Leo Tolstoy', 220, 'taught me how important being around people is');
-let bookThree = new Book('White Nights', 'Fyodor Dostoevsky', 276, 'read long time ago. About being a dreamful young'); 
+
+function toggleRead(index) {
+    myLibrary[index].toggleRead();
+    loopBooks();
+}
 
 
 
 
-function addBookToLibrary(book) {
-       return myLibrary.push(book);
- 
+
+// need to understand how to set up function through books and how for each shouuld be implemented 
+function loopBooks() {
+    let library = document.querySelector(".container");
+    library.innerHTML = "";
+    for (let i = 0; i < myLibrary.length; i++) {
+        let book = myLibrary[i];
+        let displayBook = document.createElement("div");
+        displayBook.setAttribute("class", "card");
+        displayBook.innerHTML = `
+             <div class="card-header">
+                <h3 class="title-css">${book.title}</h3>
+                <h4 class="author-css">by ${book.author}</h4>
+             </div>
+             <div class="card-body">
+                <p>${book.pages} pages</p>
+                <p class="read-status">${book.read ? "Read" : "Not Read Yet"}</p>
+                <button class="toggle-read-btn" onclick="toggleRead(${i})">Toggle Read</button>
+                <button class="remove-btn" onclick="removeBook(${i})">Remove</button>
+                
+            </div> 
+            `;
+        library.appendChild(displayBook);
+        console.log(library);
+        console.log(displayBook);
+    }
+
+
+}
+
+function removeBook(index) {
+    myLibrary.splice(index, 1);
+    loopBooks()
+  }
+
+
+
+function addBookToLibrary() {
+    let title = document.querySelector("#title").value;
+    let author = document.getElementById("author").value;
+    let pages = document.getElementById("pages").value;
+    let read = document.getElementById("read").checked;
+    let newBook = new Book(title, author, pages, read);
+    myLibrary.push(newBook);
+    loopBooks();
+
 };
-    // need to understand how to set up function through books and how for each shouuld be implemented 
-function loopBooks(arr) {
-    arr.forEach((book) => {
 
-    let bookCard = document.createElement('div');
-       let bookTitle = document.createElement('h3');
-       let bookAuthor = document.createElement('h4');
-       let bookPages = document.createElement('p'); 
-       let bookInfo = document.createElement('p');
-       bookCard.classList.add('card');
-       mainContainer.appendChild(bookCard);
-       bookCard.appendChild(bookTitle);
-       bookCard.appendChild(bookAuthor);
-       bookCard.appendChild(bookPages);
-
-       bookCard.appendChild(bookInfo); 
-       bookTitle.textContent = book.title;
-       bookAuthor.textContent = book.author; 
-       bookPages.textContent = book.pages;
-       bookInfo.textContent = book.info(); 
-
-             
-    })
-}
-
-addBookToLibrary(bookOne);
-addBookToLibrary(bookTwo);
-addBookToLibrary(bookThree); 
+const closeFormBtn = document.querySelector(".close-button");
+closeFormBtn.addEventListener("click", function() {
+    let newBookForm = document.querySelector("#new-book-form");
+    newBookForm.style.display = "none"; 
+});
 
 
 
-console.log(myLibrary);
-
-loopBooks(myLibrary); 
 
 
+
+
+const addBookBtn = document.querySelector('.add-book');
+addBookBtn.addEventListener("click", function () {
+    let newBookForm = document.querySelector("#new-book-form");
+    newBookForm.style.display = "block";
+})
+
+
+
+document.querySelector("#new-book-form").addEventListener("submit", function (event) {
+    event.preventDefault();
+    addBookToLibrary();
+})
+
+
+
+/* find out how to implement checkbox to prototype and integrate it to all books. Also keep working on modal and create form for when creating new book */
+
+// every checkbox value seems to be linked to each other. Needs to find a place where to store each individual value 
+
+//dynamicall set check box to be set   --> maybe use loop to create all checkboxes, empty array and with each loop new checkbox is created uniquely

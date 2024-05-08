@@ -12,6 +12,9 @@ body {
     height: 100vh;
     width: 100%; 
     background-color: #d6ffd5;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 
    
 }
@@ -43,6 +46,7 @@ h1 {
     
 }
 
+
 .add-book {
     display: block;
     margin: auto; 
@@ -65,24 +69,8 @@ h1 {
 }
 
 
-/* card section   */
 
-.card {
-    
-   
-    background-repeat: no-repeat;
-    width: 250px;
-    height: 400px; 
-    border: 2px solid rgb(2, 92, 22);
-    border-radius: 5%;
-    margin-top: 20px;
-    position: relative;
-    font-family: 'Montserrat', sans-serif;
-    padding: 20px; 
-    margin-top: 50px; 
-    box-shadow: 0px 0px 2px 2px;
-  
-} 
+/*
 
 .card:before {    
     content: "";
@@ -114,7 +102,7 @@ h1 {
     font-size: 1.3rem;
 }
 
-
+/*
 .card p {
     text-align: center;
     padding: 10px; 
@@ -127,5 +115,158 @@ h1 {
 
 .card p:nth-of-type(2) {
     font-size: 1.1rem; 
+    
+}
+
+/* book form */
+
+
+
+.card {
+    display: inline-block;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+
+    background-image: url('img/lady-reading-gold.svg');
+    background-repeat: no-repeat;
+    background-size: cover; 
+   
+
+    width: 250px;
+    height: 300px; 
+    border: 2px solid rgb(2, 92, 22);
+    border-radius: 5%;
+    font-family: 'Montserrat', sans-serif;
+    padding: 20px; 
+    box-shadow: 0px 0px 2px 2px;
+
+
+  
+} 
+
+form {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    width: 350px; 
+    height: 500px; 
+    margin: 20px auto;
+    border: 3px solid purple;
+    background-color: wheat;
+    border-radius: 5%;
+    
+    
+}
+
+label[for="title"],
+label[for="pages"],
+label[for="author"] {
+ display: block;
+ width: 100%;
+ text-align: center;
+}
+
+label[for="title"] {
+    margin-top: 5px; 
+}
+
+label[for="read"] {
+    display: block;
+    width: 90%;
+    text-align: center;
+    margin-top: 10px;
+}
+
+input[type="checkbox"] {
+    position: relative;
+    top: -6.5%;
+    left: 54%; 
+}
+
+input[type="submit"],
+.close-button {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    margin: 5px auto;
+    padding: 5px; 
+    border: 1px solid #ccc;
+    border-radius: 5%;
+    padding: 10px; 
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background: #4ef037; 
+}
+
+.close-button:hover {
+    background: #dc2f2f ;
+}
+
+
+input[type="text"] {
+    display: block;
+    width: 80%;
+    margin: 5px auto;
+    text-align: center;
+}
+
+
+.card-header h3 {
+        font-size: 1.8rem;
+        padding: 10px; 
+       
+        font-weight: bold;
+    }
+    
+.card-header h4 {
+        font-size: 1.3rem;
+    }
+
+.card-body p {
+    padding: 10px; 
+    font-size: 0.9rem;
+}
+
+.card-body p:nth-of-type(1) {
+    font-style: italic;
+}
+
+.card-body p:nth-of-type(2) {
+    font-size: 1.1rem; 
+    
+}
+
+.remove-btn,
+.toggle-read-btn {
+    display: block; 
+    margin: 5px auto;
+    font-family: 'Montserrat', sans-serif;
+    padding: 5px;
+    font-weight: bold;
+    background: none;
+    cursor: pointer;
+    border-radius: 5%;
+    box-shadow: 1px 1px 1px #ccc ;
+}
+
+.remove-btn {
+    border: 1px solid darkred;
+}
+
+.remove-btn:hover {
+    font-size: 1em; 
+    opacity: 1;
+    border: 3px solid darkred;
+    color: darkred;
+}
+
+.toggle-read-btn:hover {
+    font-size: 1em; 
+    opacity: 1; 
+    border: 2px solid darkorange;
+    color: darkorange;  
     
 }
